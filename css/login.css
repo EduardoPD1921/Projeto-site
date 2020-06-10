@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    background-color: #101524;
+}
+
+.login-wall {
+    margin: auto;
+    margin-top: 10%;
+    width: 300px;
+    height: 500px;
+    background-color: #eeeeee;
+    border-radius: 20px;;
+}
+
+.person-border {
+    width: 100px;
+    height: 100px;
+    margin-left: 100px;
+    margin-top: 30px;
+    background-color: #acacac;
+    border-radius: 100px;
+    position: absolute;
+}
+
+#person-icon {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+input[type=text] {
+    margin-top: 170px;
+    margin-left: 50px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: gray;
+    height: 50px;
+    width: 200px;
+}
+
+input[type=password] {
+    margin-left: 50px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: gray;
+    height: 50px;
+    width: 200px;
+}
