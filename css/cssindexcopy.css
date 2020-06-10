@@ -5,6 +5,19 @@
 	font-style: normal;
 }
 
+.bi-sun {
+	margin-right: 15px;
+	margin-left: 10px;
+}
+
+.bi-moon {
+	margin-right: 10px;
+}
+
+.switch {
+	margin-top: 10px;
+}
+
 body{
 	background-color: #101524;
 }
@@ -176,6 +189,25 @@ h2{
 
 	#btn-cancel-wall {
 		margin-left: 15%;
+	}
+
+	#sun {
+		margin-right: 60%;
+		margin-left: 70px;
+		margin-top: 20px;
+	}
+
+	#moon {
+		margin-right: 5px;
+	}
+
+	.btn-group {
+		margin-top: 25px;
+	}
+
+	.switch {
+		position: absolute;
+
 	}
 
 	/*.quadAviso {
