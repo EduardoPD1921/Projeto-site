@@ -1,2 +1,3 @@
 *Colocar algum método post para salvar o nome do usuário que entrar
 *Colocar um preventDefault para os links externos
+*Fazer com que o darkmode e lightmode seja um carregamento do servidor
