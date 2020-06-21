@@ -41,18 +41,26 @@
                     console.log('As senhas não coincidem!');
                 }
             }*/
+            function formAjax(dados) {
+                const formData = JSON.stringify(dados);
+                console.log(formData);
+            }
             const button = document.getElementById('submit');
             
             button.onclick = e => {
                 const form = document.getElementById('form');
                 
-                axios.post('signUp', {
-                    params: {
-                        username: form.username.value,
-                        password: form.senha.value,
-                        cPassword: form.cSenha.value
-                    }
-                }).then(resp => console.log(resp));
+                try {
+                    axios.post('signUp', {
+                        params: {
+                            username: form.username.value,
+                            password: form.senha.value,
+                            cPassword: form.cSenha.value
+                        }
+                    }).then(resp => formAjax(resp.data));
+                } catch(e) {
+                    console.log('erro');
+                }
             }
 
         </script>

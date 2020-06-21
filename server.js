@@ -7,13 +7,19 @@ const bodyParser = require('body-parser');
 
 // Características dos botões
 const data = require('./dados.json');
+let users = new Array();
+users.push(new createUser('Eduardo', '123'));
+users.push(new createUser('Flora', '321'));
 
 // Provendo os elementos estáticos
 app.use(express.static('.'));
 app.use(bodyParser.json());
 
-function createUser(username, nome, senha) {
-    
+function createUser(username, senha) {
+    return user = {
+        username,
+        senha
+    }
 }
 
 app.get('/saindoDaPagina', (req, res) => {
@@ -22,9 +28,19 @@ app.get('/saindoDaPagina', (req, res) => {
 
 app.post('/signUp', (req, res) => {
     if (!req.body.params.username || !req.body.params.password || !req.body.params.cPassword) {
-        res.send('Campos não preenchidos!');
+        res.send('100');
     } else {
-        console.log('teste1');
+        if (req.body.params.password != req.body.params.cPassword) {
+            res.send('200');
+        } else {
+            for (let x = 0; x <= users.length; x++) {
+                if (req.body.params.username == users[x].username) {
+                    return res.send('Erro');
+                }
+            }
+            users.push(new createUser(req.body.params.username, req.body.params.password));
+            console.log(users);
+        }
     }
 })
 
