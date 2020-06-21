@@ -12,8 +12,20 @@ const data = require('./dados.json');
 app.use(express.static('.'));
 app.use(bodyParser.json());
 
+function createUser(username, nome, senha) {
+    
+}
+
 app.get('/saindoDaPagina', (req, res) => {
     res.send(data);
+})
+
+app.post('/signUp', (req, res) => {
+    if (!req.body.params.username || !req.body.params.password || !req.body.params.cPassword) {
+        res.send('Campos não preenchidos!');
+    } else {
+        console.log('teste1');
+    }
 })
 
 app.listen(porta, () => console.log(`Executando na porta ${porta}`));
