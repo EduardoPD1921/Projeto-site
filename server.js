@@ -8,8 +8,6 @@ const bodyParser = require('body-parser');
 // Características dos botões
 const data = require('./dados.json');
 let users = new Array();
-users.push(new createUser('Eduardo', '123'));
-users.push(new createUser('Flora', '321'));
 
 // Provendo os elementos estáticos
 app.use(express.static('.'));
@@ -33,12 +31,13 @@ app.post('/signUp', (req, res) => {
         if (req.body.params.password != req.body.params.cPassword) {
             res.send('200');
         } else {
-            for (let x = 0; x <= users.length; x++) {
+            for (let x = 0; x < users.length; x++) {
                 if (req.body.params.username == users[x].username) {
-                    return res.send('Erro');
+                    return res.send('300');
                 }
             }
             users.push(new createUser(req.body.params.username, req.body.params.password));
+            res.send('400');
             console.log(users);
         }
     }

@@ -11,7 +11,7 @@
     </head>
     <body>
         <form method="POST" id="form">
-            <div class="login-wall">
+            <div class="login-wall" id="login-wall">
                 <div class="person-border">
                     <svg class="bi bi-person-circle" width="5em" id="person-icon" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
@@ -27,40 +27,129 @@
         </form>
 
         <script>
-            //Usar o servidor para criar o novo usuário e validar as senhas
-
-            /*const button = document.getElementById('teste');
+            const loginWall = document.getElementById('login-wall');
+            const username = document.getElementById('username');
             const password = document.getElementById('senha');
-            const confirmPassword = document.getElementById('cSenha');
+            const cPassword = document.getElementById('cSenha');
 
-
-            button.onclick = e => {
-                if (password.value == confirmPassword.value) {
-                    console.log('Cadastro efetuado!');
-                } else {
-                    console.log('As senhas não coincidem!');
-                }
-            }*/
             function formAjax(dados) {
                 const formData = JSON.stringify(dados);
-                console.log(formData);
+                
+                if (formData == 100) {
+                    err100();
+                }
+
+                if (formData == 200) {
+                    err200();
+                }
+
+                if (formData == 300) {
+                    err300();
+                }
+
+                if (formData == 400) {
+                    success();
+                }
             }
+
+            function success() {
+                const pastError = document.getElementById('error');
+
+                if (pastError) {
+                    loginWall.removeChild(pastError);
+                }
+
+                username.style.borderColor = 'green';
+                password.style.borderColor = 'green';
+                cPassword.style.borderColor = 'green';
+                loginWall.insertAdjacentHTML('beforeend', `<p id="success">Cadastro efetuado!</p>`);
+            }
+
+            function err300() {
+                cleanErrors();
+                const pastError = document.getElementById('error');
+                const pastSuccess = document.getElementById('success');
+
+                if (pastSuccess) {
+                    loginWall.removeChild(pastSuccess);
+                }
+                
+                if (pastError) {
+                    loginWall.removeChild(pastError);
+                }
+
+                document.getElementById('username').style.borderColor = 'red';
+                loginWall.insertAdjacentHTML('beforeend', `<p id="error">Username já está em uso!</p>`);
+            }
+
+            function err200() {
+                cleanErrors();
+                const pastError = document.getElementById('error');
+                const pastSuccess = document.getElementById('success');
+
+                if (pastSuccess) {
+                    loginWall.removeChild(pastSuccess);
+                }
+
+                if (pastError) {
+                    loginWall.removeChild(pastError);
+                }
+
+                document.getElementById('cSenha').style.borderColor = 'red';
+                loginWall.insertAdjacentHTML('beforeend', `<p id="error">As senhas não se coincidem!</p>`);
+            }
+
+            function err100() {
+                cleanErrors();
+                const pastError = document.getElementById('error');
+                const pastSuccess = document.getElementById('success');
+
+                if (pastSuccess) {
+                    loginWall.removeChild(pastSuccess);
+                }
+
+                if (pastError) {
+                    loginWall.removeChild(pastError);
+                }
+
+                if (username.value == '') {
+                    username.style.borderColor = 'red';
+                } else {
+                    username.style.borderColor = 'gray';
+                }
+
+                if (password.value == '') {
+                    password.style.borderColor = 'red';
+                } else {
+                    password.style.borderColor = 'gray';
+                }
+
+                if (cPassword.value == '') {
+                    cPassword.style.borderColor = 'red';
+                } else {
+                    cPassword.style.borderColor = 'gray';
+                }
+
+               loginWall.insertAdjacentHTML('beforeend', `<p id="error">Campos não preenchidos!</p>`);
+            }
+
+            function cleanErrors() {
+                username.style.borderColor = 'gray';
+                password.style.borderColor = 'gray';
+                cPassword.style.borderColor = 'gray';
+            }
+
             const button = document.getElementById('submit');
             
             button.onclick = e => {
                 const form = document.getElementById('form');
-                
-                try {
-                    axios.post('signUp', {
+                axios.post('signUp', {
                         params: {
                             username: form.username.value,
                             password: form.senha.value,
                             cPassword: form.cSenha.value
                         }
-                    }).then(resp => formAjax(resp.data));
-                } catch(e) {
-                    console.log('erro');
-                }
+                }).then(resp => formAjax(resp.data));
             }
 
         </script>

@@ -27,6 +27,22 @@ body {
     margin-top: 10px;
 }
 
+#error {
+    position: absolute;
+    margin-left: 60px;
+    margin-top: 30px;
+    font-style: italic;
+    color: red;
+}
+
+#success {
+    position: absolute;
+    margin-left: 90px;
+    margin-top: 30px;
+    font-style: italic;
+    color: green;
+}
+
 #submit {
     margin-top: 30px;
     margin-left: 90px;
