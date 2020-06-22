@@ -3,6 +3,29 @@ body {
     background-color: #101524;
 }
 
+#footer {
+	margin-top: 300px;
+	background-color: #343a40;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	text-align: center;
+}
+
+#socialmedias {
+	width: 20%;
+	margin: auto;
+	margin-top: 20px;
+}
+
+.nav > li >a{
+	color: #9a9da0;
+}
+
+.nav > li:hover >a,
+.nav > li:active >a{
+	color: #cccecf;
+}
+
 .login-wall {
     margin: auto;
     margin-top: 10%;
