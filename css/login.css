@@ -1,3 +1,10 @@
+@font-face {
+	font-family: 'pixelmode';
+	src: url(../Fontes/vcr_osd_mono/VCR_OSD_MONO.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+
 body {
     margin: 0;
     background-color: #101524;
@@ -9,6 +16,11 @@ body {
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;
 	text-align: center;
+}
+
+h2 {
+    color: #db8119;
+    font-family: 'pixelmode';
 }
 
 #socialmedias {
@@ -74,19 +86,39 @@ body {
 input[type=text] {
     margin-top: 170px;
     margin-left: 50px;
-    border-radius: 10px;
-    border-style: solid;
-    border-color: gray;
-    height: 50px;
+    box-shadow: 0 0 0 0;
+    border: none;
+    outline: 0;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: gray;
+    background-color: #eeeeee;
+    height: 30px;
     width: 200px;
+}
+
+input[type=text]:focus {
+    border-bottom-color: lightgreen;
 }
 
 input[type=password] {
     margin-left: 50px;
     margin-top: 20px;
-    border-radius: 10px;
-    border-style: solid;
-    border-color: gray;
-    height: 50px;
+    box-shadow: 0 0 0 0;
+    border: none;
+    outline: 0;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: gray;
+    background-color: #eeeeee;
+    height: 30px;
     width: 200px;
+}
+
+input[type=password]:focus {
+    border-bottom-color: lightgreen;
+}
+
+#submit {
+    margin-top: 80px;
 }

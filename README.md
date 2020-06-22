@@ -1,6 +1,8 @@
 # Projeto-site
 
 - [x] Página de login
-- [ ] Implementar o redirecionamento pós cadastro
+- [x] Implementar o redirecionamento pós cadastro
 - [ ] Implementar a área de login
-- [ ] Melhorar a interface de cadastro
+- [x] Melhorar a interface de cadastro
+- [ ] Diagnosticar o erro de login
+- [ ] Criar um index para cada usuário registrado para facilitar o encontro de credenciais
