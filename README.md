@@ -1,2 +1,6 @@
 # Projeto-site
-Site para o estudo de tecnologias da parte de desenvolvimento web, tanto front-end quanto back-end
+
+- [x] Página de login
+- [ ] Implementar o redirecionamento pós cadastro
+- [ ] Implementar a área de login
+- [ ] Melhorar a interface de cadastro
