@@ -62,9 +62,17 @@ h2 {
     margin-top: 10px;
 }
 
-#error {
+#error200 {
     position: absolute;
-    margin-left: 60px;
+    margin-left: 25px;
+    margin-top: 30px;
+    font-style: italic;
+    color: red;
+}
+
+#error100 {
+    position: absolute;
+    margin-left: 75px;
     margin-top: 30px;
     font-style: italic;
     color: red;

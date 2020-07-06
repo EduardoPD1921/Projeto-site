@@ -27,10 +27,10 @@ app.get('/saindoDaPagina', (req, res) => {
 
 app.post('/signUp', (req, res) => {
     if (!req.body.params.username || !req.body.params.password || !req.body.params.cPassword) {
-        res.send('100');
+        return res.send('100');
     } else {
         if (req.body.params.password != req.body.params.cPassword) {
-            res.send('200');
+            return res.send('200');
         } else {
             for (let x = 0; x < users.length; x++) {
                 if (req.body.params.username == users[x].username) {
@@ -46,17 +46,18 @@ app.post('/signUp', (req, res) => {
 
 app.post('/login', (req, res) => {
     if (!req.body.params.username || !req.body.params.password) {
-        res.send('100');
+        return res.send('100');
     } else {
         for (let x = 0; x < users.length; x++) {
             if (req.body.params.username == users[x].username) {
-                /*user = users[x];*/
+                user = users[x];
                 if (req.body.params.password == user.senha) {
-                    res.send('300');
+                    return res.send('300');
                 }
             }
+            console.log(user);
+            return res.send('200');
         }
-        res.send('200');
     }
 })
 
