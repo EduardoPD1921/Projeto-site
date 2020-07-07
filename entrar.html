@@ -79,7 +79,7 @@
 <script>
     const button = document.getElementById('submit');
 
-    function reqAjax(data) {
+    function reqAjax(data, token) {
         if (data == 100) {
             err100();
         }
@@ -89,8 +89,7 @@
         }
 
         if (data == 300) {
-            success();
-            console.log('Funcionou!');
+            success(token);
         }
     }
 
@@ -126,7 +125,7 @@
         $('#senha').css('border-color', 'red');
     }
 
-    function success() {
+    function success(token) {
         cleanErrors();
         const pastError = $('p');
 
@@ -137,6 +136,10 @@
         $('<p id="success">Login efetuado!</p>').appendTo('#login-wall');
         $('#username').css('border-color', 'green');
         $('#senha').css('border-color', 'green');
+
+        setInterval(() => {
+            window.location.href = 'http://localhost:8080/';
+        }, 1000)
     }
 
     function cleanErrors() {
@@ -150,6 +153,6 @@
                 username: form.username.value,
                 password: form.senha.value
             }
-        }).then(resp => reqAjax(resp.data));
+        }).then(resp => reqAjax(resp.data[0], resp.data[1]));
     }
 </script>

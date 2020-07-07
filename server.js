@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const data = require('./dados.json');
 let users = new Array();
 let user;
+let token = -1;
 
 // Provendo os elementos estáticos
 app.use(express.static('.'));
@@ -17,8 +18,14 @@ app.use(bodyParser.json());
 function createUser(username, senha) {
     return user = {
         username,
-        senha
+        senha,
+        token: tokenCreator()
     }
+}
+
+function tokenCreator() {
+    token++;
+    return token;
 }
 
 app.get('/saindoDaPagina', (req, res) => {
@@ -48,17 +55,18 @@ app.post('/login', (req, res) => {
     if (!req.body.params.username || !req.body.params.password) {
         return res.send('100');
     } else {
-        for (let x = 0; x < users.length; x++) {
+        for (let x = 0; x != users.length; x++) {
             if (req.body.params.username == users[x].username) {
                 user = users[x];
                 if (req.body.params.password == user.senha) {
-                    return res.send('300');
+                    return res.send(['300', user.token]);
                 }
             }
-            console.log(user);
-            return res.send('200');
         }
+        return res.send('200');
     }
 })
+
+module.exports = {cu: 'teste'}
 
 app.listen(porta, () => console.log(`Executando na porta ${porta}`));
