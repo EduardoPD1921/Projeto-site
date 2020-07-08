@@ -137,6 +137,8 @@
         $('#username').css('border-color', 'green');
         $('#senha').css('border-color', 'green');
 
+        localStorage.setItem('userToken', token);
+
         setInterval(() => {
             window.location.href = 'http://localhost:8080/';
         }, 1000)

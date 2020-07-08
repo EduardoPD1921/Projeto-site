@@ -306,6 +306,16 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 	
 	<script>
+		let token = localStorage.getItem('userToken');
+		localStorage.removeItem('userToken');
+
+		if (token) {
+			axios.post('logando', {
+				params: {
+					token
+				}
+			}).then(resp => HTMLLogado(resp.data))
+		}
 		// Modo light e dark mode
 		const button = document.querySelector('#button');
 		const sun = document.getElementById('sun');
@@ -430,8 +440,9 @@
 			}
 		}
 
-		const token = require('token');
-		console.log(token);
+		function HTMLLogado(data) {
+			/*Alterações de quando o usuário está logado*/
+		}
 
 		b[0].onclick = e => {
 			e.preventDefault();

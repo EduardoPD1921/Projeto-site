@@ -67,6 +67,8 @@ app.post('/login', (req, res) => {
     }
 })
 
-module.exports = {cu: 'teste'}
+app.post('/logando', (req, res) => {
+    res.send(users[req.body.params.token]);
+})
 
 app.listen(porta, () => console.log(`Executando na porta ${porta}`));
