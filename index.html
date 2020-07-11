@@ -75,7 +75,7 @@
 					Login | Cadastrar-se
 				</button>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">Login</a>
+					<a class="dropdown-item" href="entrar.html">Login</a>
 					<a class="dropdown-item" href="login.html">Cadastrar-se</a>
 				</div>
 			</div>
@@ -306,14 +306,16 @@
 	<script>
 		let token = localStorage.getItem('userToken');
 		localStorage.removeItem('userToken');
-
-		if (token) {
-			axios.post('logando', {
-				params: {
-					token
-				}
-			}).then(resp => HTMLLogado(resp.data))
-		}
+		
+		//if (localStorage.getItem('isLogged?') == true) {
+			if (token) {
+				axios.post('logando', {
+					params: {
+						token
+					}
+				}).then(resp => HTMLLogado(resp.data))
+			}
+		//}
 		// Modo light e dark mode
 		const button = document.querySelector('#button');
 		const sun = document.getElementById('sun');

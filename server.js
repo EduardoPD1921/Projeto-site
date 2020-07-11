@@ -53,7 +53,7 @@ app.post('/signUp', (req, res) => {
 
 app.post('/login', (req, res) => {
     if (!req.body.params.username || !req.body.params.password) {
-        return res.send('100');
+        return res.send(['100', 'err100']);
     } else {
         for (let x = 0; x != users.length; x++) {
             if (req.body.params.username == users[x].username) {
@@ -63,7 +63,7 @@ app.post('/login', (req, res) => {
                 }
             }
         }
-        return res.send('200');
+        return res.send(['200', 'err200']);
     }
 })
 

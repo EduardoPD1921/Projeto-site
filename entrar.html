@@ -80,6 +80,7 @@
     const button = document.getElementById('submit');
 
     function reqAjax(data, token) {
+        console.log(data);
         if (data == 100) {
             err100();
         }
@@ -138,6 +139,7 @@
         $('#senha').css('border-color', 'green');
 
         localStorage.setItem('userToken', token);
+        /*localStorage.setItem('isLogged?', true);*/
 
         setInterval(() => {
             window.location.href = 'http://localhost:8080/';
