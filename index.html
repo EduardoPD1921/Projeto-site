@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/cssindexcopy.css">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
 	<script src="js/axios.js"></script>
+	<script src="js/jquery.js"></script>
 </head>
 <body>
 
@@ -305,17 +306,14 @@
 	
 	<script>
 		let token = localStorage.getItem('userToken');
-		localStorage.removeItem('userToken');
 		
-		//if (localStorage.getItem('isLogged?') == true) {
-			if (token) {
-				axios.post('logando', {
-					params: {
-						token
-					}
-				}).then(resp => HTMLLogado(resp.data))
-			}
-		//}
+		if (token) {
+			axios.post('logando', {
+				params: {
+					token
+				}
+			}).then(resp => HTMLLogado(resp.data))
+		}
 		// Modo light e dark mode
 		const button = document.querySelector('#button');
 		const sun = document.getElementById('sun');
@@ -450,7 +448,12 @@
 			$('<div class="dropdown-menu dropdown-menu-right">').appendTo('[logado]');
 			$('<a class="dropdown-item">Meu perfil</a>').appendTo('[logado] > div');
 			$('<a class="dropdown-item">Configurações</a>').appendTo('[logado] > div');
-			$('<a class="dropdown-item">Sair</a>').appendTo('[logado] > div');
+			$('<a class="dropdown-item" href="#" id="disconnect">Sair</a>').appendTo('[logado] > div');
+
+			$('#disconnect').on('click', function() {
+				window.location.reload();
+				localStorage.removeItem('userToken');
+			})
 		}
 
 		b[0].onclick = e => {
@@ -476,8 +479,6 @@
 
 			reqAjax(eTarget, eHref);
 		}
-
-
 	</script>
 
 </body>
