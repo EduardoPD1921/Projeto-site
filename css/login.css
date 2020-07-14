@@ -1,0 +1,124 @@
+@font-face {
+	font-family: 'pixelmode';
+	src: url(../Fontes/vcr_osd_mono/VCR_OSD_MONO.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+    margin: 0;
+    background-color: #101524;
+}
+
+#footer {
+	margin-top: 300px;
+	background-color: #343a40;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	text-align: center;
+}
+
+h2 {
+    color: #db8119;
+    font-family: 'pixelmode';
+}
+
+#socialmedias {
+	width: 20%;
+	margin: auto;
+	margin-top: 20px;
+}
+
+.nav > li >a{
+	color: #9a9da0;
+}
+
+.nav > li:hover >a,
+.nav > li:active >a{
+	color: #cccecf;
+}
+
+.login-wall {
+    margin: auto;
+    margin-top: 10%;
+    width: 300px;
+    height: 500px;
+    background-color: #eeeeee;
+    border-radius: 20px;;
+}
+
+.person-border {
+    width: 100px;
+    height: 100px;
+    margin-left: 100px;
+    margin-top: 30px;
+    background-color: #acacac;
+    border-radius: 100px;
+    position: absolute;
+}
+
+#person-icon {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#error {
+    position: absolute;
+    margin-left: 60px;
+    margin-top: 30px;
+    font-style: italic;
+    color: red;
+}
+
+#success {
+    position: absolute;
+    margin-left: 90px;
+    margin-top: 30px;
+    font-style: italic;
+    color: green;
+}
+
+#submit {
+    margin-top: 30px;
+    margin-left: 90px;
+}
+
+input[type=text] {
+    margin-top: 170px;
+    margin-left: 50px;
+    box-shadow: 0 0 0 0;
+    border: none;
+    outline: 0;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: gray;
+    background-color: #eeeeee;
+    height: 30px;
+    width: 200px;
+}
+
+input[type=text]:focus {
+    border-bottom-color: lightgreen;
+}
+
+input[type=password] {
+    margin-left: 50px;
+    margin-top: 20px;
+    box-shadow: 0 0 0 0;
+    border: none;
+    outline: 0;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: gray;
+    background-color: #eeeeee;
+    height: 30px;
+    width: 200px;
+}
+
+input[type=password]:focus {
+    border-bottom-color: lightgreen;
+}
+
+#submit {
+    margin-top: 80px;
+}

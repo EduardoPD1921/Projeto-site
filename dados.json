@@ -1,0 +1,14 @@
+[
+    {
+        "name": "success",
+        "type": "button",
+        "class": "btn btn-outline-success",
+        "id": "btn-continue-wall"
+    },
+    {
+        "name": "danger",
+        "type": "button",
+        "class": "btn btn-outline-danger",
+        "id": "btn-cancel-wall"
+    }
+]

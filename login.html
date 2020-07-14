@@ -1,0 +1,210 @@
+<html>
+    <head>
+        <title>Dead Cells Wiki - Cadastro</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimum-scale=0.5,maximum-scale=3">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+        <link rel="shortcut icon" href="Imagens/icon.ico">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <script src="js/axios.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html">
+                <img src="Imagens/deadcellslogo.png" title="Página inicial" class="d-inline-block align-top" style="width: 100px; height: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                <svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                 </svg>
+            </button>
+            <div class="collapse navbar-collapse" id="nav-content">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="entrar.html">Entrar<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <form method="POST" id="form">
+            <div class="login-wall" id="login-wall">
+                <div class="person-border">
+                    <svg class="bi bi-person-circle" width="5em" id="person-icon" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                    </svg>
+                </div>
+                <input type="text" id="username" placeholder="Username">
+                <input type="password" id="senha" placeholder="Password">
+                <input type="password" id="cSenha" placeholder="Confirm password">
+                <button type="button" id="submit" class="btn btn-outline-danger">Cadastrar-se</button>
+            </div>
+        </form>
+
+        <div class="container">
+            <div id="footer">
+                <ul class="nav justify-content-center" style="margin-bottom: 20px;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mais informações</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Notícias</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dead Cells</a> 
+                    </li>
+                </ul>
+                <span class="footer-text" style="color: #dddada;">Designed and built with all the love in the world by the Cotil team with the help of our contributors</span><br>
+                <span class="footer-text" style="color: #dddada;">Visit our social medias:</span>
+                <div id="socialmedias">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="https://twitter.com/duardoheleno"><img src="Imagens/twitterlogo.png" style="width: 50px; height: auto;"></a>
+                        </div>
+            
+                        <div class="col-md-4">
+                            <a href="https://www.facebook.com/eduardo.gomesheleno.7"><img src="Imagens/facebooklogo.png" style="width: 50px; height: auto;"></a>
+                        </div>
+            
+                        <div class="col-md-4">
+                            <a href="https://www.instagram.com/eduardo_gomes_heleno/?hl=pt-br"><img src="Imagens/iglogo.png" style="width: 50px; height: auto;"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const loginWall = document.getElementById('login-wall');
+            const username = document.getElementById('username');
+            const password = document.getElementById('senha');
+            const cPassword = document.getElementById('cSenha');
+
+            function formAjax(dados) {
+                const formData = JSON.stringify(dados);
+                
+                if (formData == 100) {
+                    err100();
+                }
+
+                if (formData == 200) {
+                    err200();
+                }
+
+                if (formData == 300) {
+                    err300();
+                }
+
+                if (formData == 400) {
+                    success();
+                }
+            }
+
+            function success() {
+                const pastError = document.getElementById('error');
+
+                if (pastError) {
+                    loginWall.removeChild(pastError);
+                }
+
+                username.style.borderColor = 'green';
+                password.style.borderColor = 'green';
+                cPassword.style.borderColor = 'green';
+                loginWall.insertAdjacentHTML('beforeend', `<p id="success">Cadastro efetuado!</p>`);
+
+                setInterval(() => {
+                    window.location.href = 'http://localhost:8080/';
+                }, 2000)
+            }
+
+            function err300() {
+                cleanErrors();
+                const pastError = document.getElementById('error');
+                const pastSuccess = document.getElementById('success');
+
+                if (pastSuccess) {
+                    loginWall.removeChild(pastSuccess);
+                }
+                
+                if (pastError) {
+                    loginWall.removeChild(pastError);
+                }
+
+                document.getElementById('username').style.borderColor = 'red';
+                loginWall.insertAdjacentHTML('beforeend', `<p id="error">Username já está em uso!</p>`);
+            }
+
+            function err200() {
+                cleanErrors();
+                const pastError = document.getElementById('error');
+                const pastSuccess = document.getElementById('success');
+
+                if (pastSuccess) {
+                    loginWall.removeChild(pastSuccess);
+                }
+
+                if (pastError) {
+                    loginWall.removeChild(pastError);
+                }
+
+                document.getElementById('cSenha').style.borderColor = 'red';
+                loginWall.insertAdjacentHTML('beforeend', `<p id="error">As senhas não se coincidem!</p>`);
+            }
+
+            function err100() {
+                cleanErrors();
+                const pastError = document.getElementById('error');
+                const pastSuccess = document.getElementById('success');
+
+                if (pastSuccess) {
+                    loginWall.removeChild(pastSuccess);
+                }
+
+                if (pastError) {
+                    loginWall.removeChild(pastError);
+                }
+
+                if (username.value == '') {
+                    username.style.borderColor = 'red';
+                } else {
+                    username.style.borderColor = 'gray';
+                }
+
+                if (password.value == '') {
+                    password.style.borderColor = 'red';
+                } else {
+                    password.style.borderColor = 'gray';
+                }
+
+                if (cPassword.value == '') {
+                    cPassword.style.borderColor = 'red';
+                } else {
+                    cPassword.style.borderColor = 'gray';
+                }
+
+               loginWall.insertAdjacentHTML('beforeend', `<p id="error">Campos não preenchidos!</p>`);
+            }
+
+            function cleanErrors() {
+                username.style.borderColor = 'gray';
+                password.style.borderColor = 'gray';
+                cPassword.style.borderColor = 'gray';
+            }
+
+            const button = document.getElementById('submit');
+            
+            button.onclick = e => {
+                const form = document.getElementById('form');
+                axios.post('signUp', {
+                        params: {
+                            username: form.username.value,
+                            password: form.senha.value,
+                            cPassword: form.cSenha.value
+                        }
+                }).then(resp => formAjax(resp.data));
+            }
+
+        </script>
+    </body>
+</html>

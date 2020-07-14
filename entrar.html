@@ -1,0 +1,162 @@
+<html>
+    <head>
+        <title>Dead Cells Wiki - Entrar</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimum-scale=0.5,maximum-scale=3">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+        <link rel="shortcut icon" href="Imagens/icon.ico">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/entrar.css">
+        <script src="js/axios.js"></script>
+        <script src="js/jquery.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html">
+                <img src="Imagens/deadcellslogo.png" title="Página inicial" class="d-inline-block align-top" style="width: 100px; height: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                <svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                 </svg>
+            </button>
+            <div class="collapse navbar-collapse" id="nav-content">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Cadastrar-se<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <form method="POST" id="form">
+            <div class="login-wall" id="login-wall">
+                <div class="person-border">
+                    <svg class="bi bi-person-circle" width="5em" id="person-icon" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                    </svg>
+                </div>
+                <input type="text" id="username" placeholder="Username">
+                <input type="password" id="senha" placeholder="Password">
+                <button type="button" id="submit" class="btn btn-outline-danger">Entrar</button>
+            </div>
+        </form>
+
+        <div class="container">
+            <div id="footer">
+                <ul class="nav justify-content-center" style="margin-bottom: 20px;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mais informações</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Notícias</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dead Cells</a> 
+                    </li>
+                </ul>
+                <span class="footer-text" style="color: #dddada;">Designed and built with all the love in the world by the Cotil team with the help of our contributors</span><br>
+                <span class="footer-text" style="color: #dddada;">Visit our social medias:</span>
+                <div id="socialmedias">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="https://twitter.com/duardoheleno"><img src="Imagens/twitterlogo.png" style="width: 50px; height: auto;"></a>
+                        </div>
+            
+                        <div class="col-md-4">
+                            <a href="https://www.facebook.com/eduardo.gomesheleno.7"><img src="Imagens/facebooklogo.png" style="width: 50px; height: auto;"></a>
+                        </div>
+            
+                        <div class="col-md-4">
+                            <a href="https://www.instagram.com/eduardo_gomes_heleno/?hl=pt-br"><img src="Imagens/iglogo.png" style="width: 50px; height: auto;"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script>
+    const button = document.getElementById('submit');
+
+    function reqAjax(data, token) {
+        console.log(data);
+        if (data == 100) {
+            err100();
+        }
+
+        if (data == 200) {
+            err200();
+        }
+
+        if (data == 300) {
+            success(token);
+        }
+    }
+
+    function err100() {
+        cleanErrors();
+        const pastError = $('p');
+
+        if (pastError) {
+            pastError.remove();
+        }
+
+        $('<p id="error100">Campos obrigatórios!</p>').appendTo('#login-wall');
+
+        if ($('#username').val() == '') {
+            $('#username').css('border-color', 'red');
+        }
+
+        if ($('#senha').val() == '') {
+            $('#senha').css('border-color', 'red');
+        }
+    }
+    
+    function err200() {
+        cleanErrors();
+        const pastError = $('p');
+
+        if (pastError) {
+            pastError.remove();
+        }
+
+        $('<p id="error200">Username ou senha estão incorretos!</p>').appendTo('#login-wall');
+        $('#username').css('border-color', 'red');
+        $('#senha').css('border-color', 'red');
+    }
+
+    function success(token) {
+        cleanErrors();
+        const pastError = $('p');
+
+        if (pastError) {
+            pastError.remove();
+        }
+
+        $('<p id="success">Login efetuado!</p>').appendTo('#login-wall');
+        $('#username').css('border-color', 'green');
+        $('#senha').css('border-color', 'green');
+
+        localStorage.setItem('userToken', token);
+        /*localStorage.setItem('isLogged?', true);*/
+
+        setInterval(() => {
+            window.location.href = 'http://localhost:8080/';
+        }, 1000)
+    }
+
+    function cleanErrors() {
+        $('#username').css('border-color', 'gray');
+        $('#senha').css('border-color', 'gray');
+    }
+
+    button.onclick = e => {
+        axios.post('login', {
+            params: {
+                username: form.username.value,
+                password: form.senha.value
+            }
+        }).then(resp => reqAjax(resp.data[0], resp.data[1]));
+    }
+</script>
