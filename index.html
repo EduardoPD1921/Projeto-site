@@ -344,6 +344,8 @@
 				sun.setAttribute('fill', 'currentColor');
 				moon.setAttribute('fill', 'currentColor');
 
+				localStorage.setItem('visualMode', 'light');
+
 			} else {
 				document.querySelector('body').style.backgroundColor = '#101524';
 				document.getElementById('jumbotron').style.backgroundColor = '#101524';
@@ -369,6 +371,8 @@
 
 				sun.setAttribute('fill', 'white');
 				moon.setAttribute('fill', 'white');
+
+				localStorage.setItem('visualMode', 'dark');
 			}
 		}
 

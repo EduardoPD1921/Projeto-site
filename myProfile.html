@@ -86,26 +86,49 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
     
     <script>
+        if (localStorage.getItem('visualMode') == 'light') {
+            lightMode();
+            $('#button').prop('checked', 'true');
+            console.log('teste');
+        } else if (localStorage.getItem('visualMode') == 'dark') {
+            darkMode();
+            $('#button').prop('checked', 'false');
+            console.log('teste2');
+        }
+
         $('#button').on('click', function() {
             if (this.checked == true) {
-                $('body').css('background-color', 'white');
-
-                $('#navbar').removeClass('navbar navbar-expand-md navbar-dark bg-dark');
-                $('#navbar').addClass('navbar navbar-expand-lg navbar-light bg-light');
-
-                $('#dropdownMenuButton').removeClass('btn btn-secondary dropdown-toggle');
-                $('#dropdownMenuButton').addClass('btn btn-primary dropdown-toggle');
+                lightMode();
             } else {
-                $('body').css('background-color', '#101524');
-
-                $('#navbar').removeClass('navbar navbar-expand-lg navbar-light bg-light');
-                $('#navbar').addClass('navbar navbar-expand-md navbar-dark bg-dark');
-
-                $('#dropdownMenuButton').removeClass('btn btn-primary dropdown-toggle');
-                $('#dropdownMenuButton').addClass('btn btn-secondary dropdown-toggle');
-
+                darkMode();
             }
         })
+
+        function darkMode() {
+            $('body').css('background-color', '#101524');
+
+            $('#navbar').removeClass('navbar navbar-expand-lg navbar-light bg-light');
+            $('#navbar').addClass('navbar navbar-expand-md navbar-dark bg-dark');
+
+            $('#dropdownMenuButton').removeClass('btn btn-primary dropdown-toggle');
+            $('#dropdownMenuButton').addClass('btn btn-secondary dropdown-toggle');
+
+            $('#sun').attr('fill', 'white');
+            $('#moon').attr('fill', 'white');
+        }
+
+        function lightMode() {
+            $('body').css('background-color', 'white');
+
+            $('#navbar').removeClass('navbar navbar-expand-md navbar-dark bg-dark');
+            $('#navbar').addClass('navbar navbar-expand-lg navbar-light bg-light');
+
+            $('#dropdownMenuButton').removeClass('btn btn-secondary dropdown-toggle');
+            $('#dropdownMenuButton').addClass('btn btn-primary dropdown-toggle');
+
+            $('#sun').attr('fill', 'black');
+            $('#moon').attr('fill', 'black');
+        }
     </script>
     </body>
 </html>
