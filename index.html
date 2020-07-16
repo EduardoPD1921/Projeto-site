@@ -301,14 +301,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 	
 	<script>
-		const visualMode = localStorage.getItem('visualMode');
-
-		if (visualMode) {
-			if (visualMode == 'light') {
-				
-			}
-		}
-
 		let token = localStorage.getItem('userToken');
 		
 		if (token) {
@@ -327,64 +319,12 @@
 			const checked = button.checked;
 
 			if (checked == true) {
-				document.querySelector('body').style.backgroundColor = 'White';
-				document.getElementById('jumbotron').style.backgroundColor = 'White';
-				document.querySelectorAll('.card-body').forEach(light => {
-					light.style.backgroundColor = 'white';
-					light.style.color = 'black';
-				})
-				document.getElementById('footer').style.backgroundColor = '#d7dce0';
-				document.querySelectorAll('.footer-text').forEach(text => {
-					text.style.color = 'black';
-				})
-				document.getElementById('navbar').className = 'navbar navbar-expand-lg navbar-light bg-light';
-				document.querySelectorAll('#dropdownMenuButton').forEach(icon => {
-					icon.className = 'btn btn-primary dropdown-toggle';
-				})
-				document.querySelectorAll('#transparencyJs').forEach(transparency => {
-					transparency.style.background = 'rgba(217,217,217,0.5)';
-					transparency.style.color = 'black';
-				})
-				document.querySelectorAll('.transparencyText').forEach(textColor => {
-					textColor.style.color = 'black';
-				})
-
-				sun.setAttribute('fill', 'currentColor');
-				moon.setAttribute('fill', 'currentColor');
-
-				localStorage.setItem('visualMode', 'light');
-
+				lightMode();
 			} else {
-				document.querySelector('body').style.backgroundColor = '#101524';
-				document.getElementById('jumbotron').style.backgroundColor = '#101524';
-				document.querySelectorAll('.card-body').forEach(dark => {
-					dark.style.backgroundColor = '#292e3e';
-					dark.style.color = 'white';
-				})
-				document.getElementById('footer').style.backgroundColor = '#343a40';
-				document.querySelectorAll('.footer-text').forEach(text => {
-					text.style.color = 'white';
-				})
-				document.getElementById('navbar').className = 'navbar navbar-expand-lg navbar-dark bg-dark';
-				document.querySelectorAll('#dropdownMenuButton').forEach(icon => {
-					icon.className = 'btn btn-secondary dropdown-toggle';
-				})
-				document.querySelectorAll('#transparencyJs').forEach(transparency => {
-					transparency.style.background = 'rgba(0,0,0,0.5)';
-					transparency.style.color = 'white';
-				})
-				document.querySelectorAll('.transparencyText').forEach(textColor => {
-					textColor.style.color = 'white';
-				})
-
-				sun.setAttribute('fill', 'white');
-				moon.setAttribute('fill', 'white');
-
-				localStorage.setItem('visualMode', 'dark');
+				darkMode();
 			}
 		}
 
-		
 		const b = document.querySelectorAll('[btn-prevent-default]');
 		let isWarningOpen = false;
 
@@ -392,6 +332,74 @@
 			axios.get('saindoDaPagina', {
 
 			}).then(resp => carregaHTML(resp.data, e, href))
+		}
+
+		function lightMode() {
+			document.querySelector('body').style.backgroundColor = 'White';
+			document.getElementById('jumbotron').style.backgroundColor = 'White';
+			document.querySelectorAll('.card-body').forEach(light => {
+				light.style.backgroundColor = 'white';
+				light.style.color = 'black';
+			})
+			document.getElementById('footer').style.backgroundColor = '#d7dce0';
+			document.querySelectorAll('.footer-text').forEach(text => {
+				text.style.color = 'black';
+			})
+			document.getElementById('navbar').className = 'navbar navbar-expand-lg navbar-light bg-light';
+			document.querySelectorAll('#dropdownMenuButton').forEach(icon => {
+				icon.className = 'btn btn-primary dropdown-toggle';
+			})
+				document.querySelectorAll('#transparencyJs').forEach(transparency => {
+				transparency.style.background = 'rgba(217,217,217,0.5)';
+				transparency.style.color = 'black';
+			})
+				document.querySelectorAll('.transparencyText').forEach(textColor => {
+				textColor.style.color = 'black';
+			})
+
+			sun.setAttribute('fill', 'currentColor');
+			moon.setAttribute('fill', 'currentColor');
+
+			localStorage.setItem('visualMode', 'light');
+		}
+
+		function darkMode() {
+			document.querySelector('body').style.backgroundColor = '#101524';
+			document.getElementById('jumbotron').style.backgroundColor = '#101524';
+			document.querySelectorAll('.card-body').forEach(dark => {
+				dark.style.backgroundColor = '#292e3e';
+				dark.style.color = 'white';
+			})
+			document.getElementById('footer').style.backgroundColor = '#343a40';
+			document.querySelectorAll('.footer-text').forEach(text => {
+				text.style.color = 'white';
+			})
+			document.getElementById('navbar').className = 'navbar navbar-expand-lg navbar-dark bg-dark';
+			document.querySelectorAll('#dropdownMenuButton').forEach(icon => {
+				icon.className = 'btn btn-secondary dropdown-toggle';
+			})
+			document.querySelectorAll('#transparencyJs').forEach(transparency => {
+				transparency.style.background = 'rgba(0,0,0,0.5)';
+				transparency.style.color = 'white';
+			})
+			document.querySelectorAll('.transparencyText').forEach(textColor => {
+				textColor.style.color = 'white';
+			})
+
+			sun.setAttribute('fill', 'white');
+			moon.setAttribute('fill', 'white');
+
+			localStorage.setItem('visualMode', 'dark');
+		}
+
+		const visualMode = localStorage.getItem('visualMode');
+
+		if (visualMode == 'dark') {
+			darkMode();
+			$('#button').prop('checked', false);
+		} else if (visualMode == 'light') {
+			lightMode();
+			$('#button').prop('checked', true);
 		}
 
 		function carregaHTML(respostaAjax, e, href) {
@@ -452,7 +460,7 @@
 			$('<svg class="bi bi-person-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">').appendTo('[logado] > button');
 			$('#icon').appendTo('[logado] > button > svg');
 			$('[alteredLogin]').remove();
-			$(`<a style="margin-left: 50px;">${data.username}</a>`).appendTo('[logado] > button');
+			$(`<a style="margin-left: 80px;">${data.username}</a>`).appendTo('[logado] > button');
 			$('<div class="dropdown-menu dropdown-menu-right">').appendTo('[logado]');
 			$('<a class="dropdown-item" href="myProfile.html">Meu perfil</a>').appendTo('[logado] > div');
 			$('<a class="dropdown-item">Configurações</a>').appendTo('[logado] > div');
